@@ -1,0 +1,15 @@
+.jumbotron {
+  padding: 100px;
+  background-color: rgb(75, 73, 73);
+}
+
+h1 {
+  font-size: 38px;
+  letter-spacing: 1.2px;
+  color: #fff;
+}
+
+h3 {
+  color: #fff;
+  text-align: center;
+}

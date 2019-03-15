@@ -1,0 +1,18 @@
+.navbar {
+  border-radius: 0;
+}
+
+.navbar-brand {
+   font-family: 'Source Sans Pro', sans-serif;
+   font-size: 35px;
+}
+
+li {
+  font-size: 18px;
+  margin-left: 40px;
+  margin-bottom: -10px;
+}
+
+Link:hover {
+  color: rgb(216, 209, 207);
+}

@@ -1,0 +1,35 @@
+{
+  "name": "dcfd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build",
+    "seed": "node scripts/seedDB.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.7"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "chart.js": "^2.8.0",
+    "express": "^4.16.3",
+    "has-flag": "^3.0.0",
+    "has-value": "^2.0.2",
+    "if-env": "^1.0.4",
+    "moment": "^2.24.0",
+    "mongoose": "^5.3.16",
+    "react-chartjs-2": "^2.7.4",
+    "react-moment": "^0.8.4",
+    "react-select": "^2.4.1"
+  }
+}
