@@ -35,4 +35,40 @@ router.get('/', function (req, res) {
 });
 // .post(donorsController.create);
 
+router.get('/contributed', function (req, res) {
+	let race = req.query.race;
+	let year = req.query.year;
+	let yearRegex = '^' + year;
+	let minAmt = parseFloat(req.query.minAmt);
+	let maxAmt = parseFloat(req.query.maxAmt);
+	console.log('this route: Contributed' + " " + req.query.race + " " + req.query.year + " " + req.query.minAmt + " " + req.query.maxAmt);
+
+	db.Data.find({ race: race, amount: { $lte: maxAmt, $gte: minAmt }, date: { $regex: yearRegex } })
+		.then(response => {
+			res.json({ response });
+			console.log(response);
+		}).catch(err => {
+			console.log(err);
+		})
+});
+
+router.get('/yearlycontributed', function (req, res) {
+	let year = req.query.year;
+	let yearRegex = '^' + year;
+	let minAmt = parseFloat(req.query.minAmt);
+	let maxAmt = parseFloat(req.query.maxAmt);
+	console.log('this route: yearly Contributed' + " " + req.query.year + " " + req.query.minAmt + " " + req.query.maxAmt);
+
+	db.Data.find({ date: { $regex: yearRegex }, amount: { $lte: maxAmt, $gte: minAmt } })
+		.then(response => {
+			res.json({ response });
+			console.log(response);
+		}).catch(err => {
+			console.log(err);
+		})
+});
+
+
+
+
 module.exports = router;

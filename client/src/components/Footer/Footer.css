@@ -1,3 +1,13 @@
 p {
-    letter-spacing: 0.5px;
+    margin-left: 20px;
+    size: 18px;
+    font-weight: 999;
+    letter-spacing: 1.5px;
+    color: #fff;
+    padding-bottom: 5px;
+}
+
+footer {
+    margin-top: 80px;
+    background-color: rgb(170, 0, 0);
 }

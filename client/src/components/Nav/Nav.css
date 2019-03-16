@@ -1,18 +1,30 @@
 .navbar {
   border-radius: 0;
+  border-bottom: 5px solid rgb(170, 0, 0);
 }
 
 .navbar-brand {
-   font-family: 'Source Sans Pro', sans-serif;
-   font-size: 35px;
+  font-family: 'Markazi Text', serif;
+  font-size: 25px;
+  font-weight: 999;
+  letter-spacing: 2px;
+  color: rgb(170, 0, 0);
+  margin-left: 10px;
 }
 
 li {
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
-  margin-left: 40px;
-  margin-bottom: -10px;
+  margin-left: 20px;
+  margin-bottom: -25px;
+  color: black;
+  margin-right: -10px;
+  font-weight: 999;
+  letter-spacing: 1.5px;
+  padding: 2px 5px;
 }
 
-Link:hover {
-  color: rgb(216, 209, 207);
+li:hover {
+  color: #fff;
+  background-color:rgba(218, 214, 214, 0.5);
 }

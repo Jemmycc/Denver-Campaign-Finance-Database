@@ -16,9 +16,8 @@ class Home extends Component {
 
   render() {
     return (
-      <>
-        {/* <Nav /> */}
-        <Container>
+      <div>
+        <Container fluid>
           <Row>
             <Col size="md-12">
               <Jumbotron>
@@ -30,24 +29,26 @@ class Home extends Component {
               </h3>
               </Jumbotron>
             </Col>
-            <Col size="md-1"> </Col>
-            <Col size="md-10">
+          </Row>
+          <Row>
+            <Col size="md-3"> </Col>
+            <Col size="md-6">
               <DonorSearch />
             </Col>
-            <Col size="md-1"> </Col>
-            <Col size="md-1"> </Col>
-            <Col size="md-10">
+            <Col size="md-3"> </Col>
+            <Col size="md-3"> </Col>
+            <Col size="md-6">
               <ContributedSearch />
             </Col>
-            <Col size="md-1"> </Col>
-            <Col size="md-1"> </Col>
-            <Col size="md-10">
+            <Col size="md-3"> </Col>
+            <Col size="md-3"> </Col>
+            <Col size="md-6">
               <YearlyContributedSearch />
             </Col>
-            <Col size="md-1"> </Col>
+            <Col size="md-3"> </Col>
           </Row>
         </Container>
-      </>
+      </div>
     );
   }
 }

@@ -50,12 +50,15 @@ class Donor extends Component {
     render() {
         return (
             <>
-                {/* <Nav /> */}
 
-                <Container>
+                <Container style={{
+                    backgroundColor: 'blue'
+                }}>>
                     <Row>
                         <Col size="md-12">
-                            <h3> Donor's contributions</h3>
+                            <h2>
+                                <strong>Donor's Contribution</strong>
+                            </h2>
                         </Col>
 
                         <CoinTable

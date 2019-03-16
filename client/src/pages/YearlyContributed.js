@@ -21,9 +21,9 @@ class YearlyContributed extends Component {
                 <Container>
                     <Row>
                         <Col size="md-12">
-                            <h1 className="text-center">
-                                <strong>Contributed</strong>
-                            </h1>
+                            <h2>
+                                <strong>Yearly Contributed</strong>
+                            </h2>
                         </Col>
                     </Row>
                 </Container>

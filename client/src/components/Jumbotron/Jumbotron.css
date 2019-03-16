@@ -1,15 +1,25 @@
 .jumbotron {
   padding: 100px;
-  background-color: rgb(75, 73, 73);
+  background-color: #fff;
 }
 
 h1 {
-  font-size: 38px;
-  letter-spacing: 1.2px;
-  color: #fff;
+ font-family: 'Parisienne', cursive;
+  font-size: 66px;
+  letter-spacing: 2px;
+  color:  rgb(75, 73, 73);
+  Padding-bottom: 10px;
+  margin-top: -105px;
+  margin-bottom: -10px;
 }
 
 h3 {
-  color: #fff;
+  font-family: 'Source Sans Pro', sans-serif;
+  color:  rgb(75, 73, 73);
   text-align: center;
+  letter-spacing: 1.5px;
+  line-height: 32px;
+  padding: 5px 80px 20px 80px;
+  margin-bottom: -120px;
 }
+

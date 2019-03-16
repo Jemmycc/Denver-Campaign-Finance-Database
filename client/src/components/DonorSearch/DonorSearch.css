@@ -1,7 +1,4 @@
-.submitBtn{
-    width: 80px;
-    margin: 10px;
-}
+
 label {
     margin: 10px 20px 5px;
     font-family: 'Source Sans Pro', sans-serif;
@@ -13,15 +10,15 @@ input {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 16px;
     padding-left: 5px;
-    width: 170px;
+    width: 200px;
 }
 
 form {
     margin-top: 15px;
-    margin-bottom: 25px;
-    /* position: relative; */
-    min-height: 150px;
-    border-bottom: 1px solid black;
+    position: relative;
+    height: 150px;
+    border-bottom: 2px solid  rgb(170, 0, 0);
+    padding-left: 35px;
 }
 
 .title {
@@ -29,20 +26,25 @@ form {
  letter-spacing: 0.6px;
  font-size: 25px;
  font-weight: 999;
- margin-top: 20px;
+ padding-left: 25px;
 }
+
 
 .submitBtn{
     width: 80px;
     color: #fff;
-    background-color: green;
+    background-color: rgb(41, 115, 200);
     letter-spacing: 1px;
     cursor: pointer;
-    /* position: absolute; */
     bottom: 20px;
 }
 
 .submitBtn:hover {
-    color: green;
+    color: rgb(41, 115, 200);
     background-color: #fff;
+}
+
+
+.container-search {
+    height: 250px;
 }

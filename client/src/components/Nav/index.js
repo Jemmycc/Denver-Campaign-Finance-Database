@@ -25,14 +25,14 @@ class Nav extends Component {
     window.addEventListener("resize", this.updateWidth);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     window.removeEventListener("resize", this.updateWidth);
   }
 
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light mb-2">
-        <Link className="navbar-brand" to="/"> DCFD</Link>
+        <Link className="navbar-brand" to="/"> Campaign Inside</Link>
         <button
           onClick={this.toggleNav}
           className="navbar-toggler"

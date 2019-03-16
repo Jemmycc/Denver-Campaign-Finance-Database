@@ -1,4 +1,43 @@
+label {
+    margin: 10px 20px 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+}
+
+input {
+    margin: 5px 15px 15px 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    padding-left: 5px;
+    width: 200px;
+}
+
+form {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    position: relative;
+    min-height: 150px;
+}
+
+.title {
+ font-family: 'Hind', sans-serif;
+ letter-spacing: 0.6px;
+ font-size: 25px;
+ font-weight: 999;
+ margin-top: 20px;
+}
+
 .submitBtn{
     width: 80px;
-    margin: 10px;
+    color: #fff;
+    background-color: rgb(41, 115, 200);
+    letter-spacing: 1px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+}
+
+.submitBtn:hover {
+    color: rgb(41, 115, 200);
+    background-color: #fff;
 }

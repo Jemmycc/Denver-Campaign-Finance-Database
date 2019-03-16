@@ -6,14 +6,25 @@ import Contributed from "./pages/Contributed";
 import YearlyContributed from "./pages/YearlyContributed";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
-// import Footer from "./components/Footer";
+import CardTitle from './components/CardTitle';
+import Footer from "./components/Footer";
 
+const todoBackground = {
+  width: "80%",
+  height: "auto",
+  margin: "auto",
+  backgroundColor: "#fff",
+  boxSizing: "border-box",
+  boxShadow: "5px 10px 8px #888888",
+}
 
 
 function App() {
   return (
     <Router>
-      <div>
+      {/* <div style={{ backgroundColor: "rgb(230, 230, 230)" }}> */}
+      <div style={todoBackground}>
+        <CardTitle />
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -22,7 +33,7 @@ function App() {
           <Route exact path="/yearlycontributed" component={YearlyContributed} />
           <Route component={NoMatch} />
         </Switch>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </Router>
   );

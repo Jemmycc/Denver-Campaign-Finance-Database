@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 // import Form from "../components/Form";
 //import Footer from "../components/Footer";
 // import API from "../utils/API";
+import ContributedChart from "../components/Contributed";
 import { Col, Row, Container } from '../components/Grid';
 // import { List } from "../components/List";
 
@@ -21,9 +22,7 @@ class Contributed extends Component {
                 <Container>
                     <Row>
                         <Col size="md-12">
-                            <h1 className="text-center">
-                                <strong>Contributed</strong>
-                            </h1>
+                            <ContributedChart />
                         </Col>
                     </Row>
                 </Container>
