@@ -68,7 +68,11 @@ router.get('/yearlycontributed', function (req, res) {
 		})
 });
 
-
+router.post('/yearlycontributedinfo', function (req, res) {
+	console.log(req.body);
+	// db.Data,find({})
+	res.send("this is a data from yearly.");
+})
 
 
 module.exports = router;

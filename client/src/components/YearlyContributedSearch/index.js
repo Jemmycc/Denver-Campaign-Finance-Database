@@ -28,7 +28,7 @@ class YearlyContributedSearch extends React.Component {
 
         console.log(this.state.selectedYear, minAmount, maxAmount);
 
-        axios.get('/api/yearlycontributed', {
+        axios.post('/api/yearlycontributedinfo', {
             params: {
                 year: this.state.selectedYear,
                 minAmt: minAmount,
@@ -36,7 +36,10 @@ class YearlyContributedSearch extends React.Component {
             }
         }).then((res) => {
             console.log(res.data);
+
         }).catch((err => console.log(err)))
+
+
     }
 
 
