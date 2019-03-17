@@ -33,7 +33,6 @@ router.get('/', function (req, res) {
 		console.log(err);
 	})
 });
-// .post(donorsController.create);
 
 router.get('/contributed', function (req, res) {
 	let race = req.query.race;
@@ -52,6 +51,17 @@ router.get('/contributed', function (req, res) {
 		})
 });
 
+router.post('/contributedinfo', function (req, res) {
+	console.log(req.body);
+
+	db.Data.find({ date: { $regex: req.body.params.year }, amount: { $lte: req.body.params.maxAmt } })
+		.then(response => {
+			res.json({ response });
+		}).catch(err => {
+			console.log(err);
+		})
+})
+
 router.get('/yearlycontributed', function (req, res) {
 	let year = req.query.year;
 	let yearRegex = '^' + year;
@@ -68,7 +78,40 @@ router.get('/yearlycontributed', function (req, res) {
 		})
 });
 
+router.post('/yearlycontributedinfo', function (req, res) {
 
+	// db.Data.aggregate([
+	// 	{
+	// 		"$group": {
+	// 			total: {
+	// 				$sum: {
+	// 					"$lte": "req.body.params.maxAmt",
+	// 					"$gte": "req.body.params.minAmt"
+	// 				},
+	// 			}
+	// 		}
+	// 	},
+	// ]);
 
+	db.Data.find({
+		date: { $regex: req.body.params.year },
+
+		amount: { $lte: req.body.params.maxAmt }
+
+		// amount: {
+		// 	total: {
+		// 		$sum: {
+		// 			"$lte": "req.body.params.maxAmt",
+		// 			"$gte": "req.body.params.minAmt"
+		// 		},
+		// 	}
+		// }
+	})
+		.then(response => {
+			res.json({ response });
+		}).catch(err => {
+			console.log(err);
+		})
+})
 
 module.exports = router;

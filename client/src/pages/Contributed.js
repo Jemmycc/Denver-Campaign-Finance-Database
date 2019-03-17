@@ -22,6 +22,16 @@ class Contributed extends Component {
                 <Container>
                     <Row>
                         <Col size="md-12">
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col size="md-12">
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col size="md-12">
                             <ContributedChart />
                         </Col>
                     </Row>

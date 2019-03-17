@@ -32,7 +32,7 @@ class ContributedSearch extends React.Component {
 
         console.log(this.state.selectedRace, this.state.selectedYear, minAmount, maxAmount);
 
-        axios.get('/api/contributed', {
+        axios.post('/api/contributedinfo', {
             params: {
                 race: this.state.selectedRace,
                 year: this.state.selectedYear,
@@ -79,13 +79,6 @@ class ContributedSearch extends React.Component {
                                 <datalist id="races">
                                     {this.state.campaignRaces.map((race, index) => (
                                         <option value={race} key={index} />
-
-                                        /* <option value="Auditor" key={0} />
-                                        <option value="Candidate" key={1} />
-                                        <option value="Clerk+Recorder" key={2} />
-                                        <option value="Council-At-Large" key={3} />
-                                        <option value="District Councilmember" key={4} />
-                                        <option value="Mayor" key={5} /> */
                                     ))}
                                 </datalist>
                             </div>
@@ -100,10 +93,6 @@ class ContributedSearch extends React.Component {
                                     value={this.state.selectedYear}
                                     onChange={this.handleYearChange} />
                                 <datalist id="years">
-                                    {/* {this.state.campaignYears.map((year, index) => (
-                                        <option value={year} key={index} />
-                                    ))} */}
-
                                     <option value="2012" key={0} />
                                     <option value="2013" key={1} />
                                     <option value="2014" key={2} />
@@ -124,15 +113,12 @@ class ContributedSearch extends React.Component {
                                     value={this.state.selectedAmount}
                                     onChange={this.handleAmountChange} />
                                 <datalist id="amount">
-                                    {/* {this.state.campaignAmounts.map((amount, index) => ( */}
                                     <option value="500-999" key={0} />
                                     <option value="1000-1999" key={1} />
                                     <option value="2000-2999" key={2} />
                                     <option value="3000-3999" key={3} />
                                     <option value="4000-4999" key={4} />
                                     <option value="5000-999999" key={5} />
-
-                                    {/* ))} */}
                                 </datalist>
                             </div>
 

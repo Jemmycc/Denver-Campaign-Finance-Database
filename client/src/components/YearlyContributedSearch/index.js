@@ -2,7 +2,6 @@ import React from 'react';
 import { Row, Col } from "../Grid";
 import axios from 'axios';
 import "./YearlyContributedSearch.css";
-// import moment from 'moment/moment.js'
 
 class YearlyContributedSearch extends React.Component {
     state = {
@@ -28,7 +27,7 @@ class YearlyContributedSearch extends React.Component {
 
         console.log(this.state.selectedYear, minAmount, maxAmount);
 
-        axios.get('/api/yearlycontributed', {
+        axios.post('/api/yearlycontributedinfo', {
             params: {
                 year: this.state.selectedYear,
                 minAmt: minAmount,
@@ -38,7 +37,6 @@ class YearlyContributedSearch extends React.Component {
             console.log(res.data);
         }).catch((err => console.log(err)))
     }
-
 
     handleYearChange = event => {
         this.setState({ selectedYear: event.target.value });
@@ -66,10 +64,6 @@ class YearlyContributedSearch extends React.Component {
                                     value={this.state.selectedYear}
                                     onChange={this.handleYearChange} />
                                 <datalist id="years">
-                                    {/* {this.state.campaignYears.map((year, index) => (
-                                        <option value={year} key={index} />
-                                    ))} */}
-
                                     <option value="2012" key={0} />
                                     <option value="2013" key={1} />
                                     <option value="2014" key={2} />
@@ -96,6 +90,7 @@ class YearlyContributedSearch extends React.Component {
                                     ))}
                                 </datalist>
                             </div>
+
                         </form>
                     </Col>
                     <Col size="md-2">
@@ -111,6 +106,5 @@ class YearlyContributedSearch extends React.Component {
         );
     }
 }
-
 
 export default YearlyContributedSearch;

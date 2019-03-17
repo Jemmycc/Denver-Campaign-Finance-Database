@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
+import "./Chart.css";
 
 
 
@@ -27,11 +28,10 @@ class Chart extends Component {
                     width={100}
                     height={50}
                     options={{
-                        // maintainAspectRatio: false
                         title: {
                             display: this.props.displayTitle,
-                            text: "Campaign Contribution",
-                            fontSize: 25
+                            text: "",
+                            fontSize: 75
                         },
                         legend: {
                             display: this.props.displayLegend,
