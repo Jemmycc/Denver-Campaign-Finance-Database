@@ -29,6 +29,7 @@ class YearlyContributedSearch extends React.Component {
 
         axios.post('/api/yearlycontributedinfo', {
             params: {
+                race: this.state.selectedRace,
                 year: this.state.selectedYear,
                 minAmt: minAmount,
                 maxAmt: maxAmount

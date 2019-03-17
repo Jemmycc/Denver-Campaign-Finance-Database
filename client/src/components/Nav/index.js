@@ -50,19 +50,19 @@ class Nav extends Component {
               <Link
                 onClick={this.toggleNav}
                 className={window.location.pathname === "/donor" ? "nav-link active" : "nav-link"}
-                to="/donor">DONOR INFO</Link>
+                to="/donor">DONOR'S CONTRIBUTION</Link>
             </li>
             <li className="nav-item">
               <Link
                 onClick={this.toggleNav}
                 className={window.location.pathname === "/contributed" ? "nav-link active" : "nav-link"}
-                to="/contributed">CAMPAIGN CONTRIBUTED INFO</Link>
+                to="/contributed">CONTRIBUTED COMPARISON</Link>
             </li>
             <li className="nav-item">
               <Link
                 onClick={this.toggleNav}
                 className={window.location.pathname === "/yearlycontributed" ? "nav-link active" : "nav-link"}
-                to="/yearlycontributed">YEARLY CONTRIBUTED INFO</Link>
+                to="/yearlycontributed">YEARLY CONTRIBUTION COMPARISON</Link>
             </li>
           </ul>
         </div>
