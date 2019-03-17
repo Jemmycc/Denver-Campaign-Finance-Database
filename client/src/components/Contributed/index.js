@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Chart from '../Chart/Chart';
-import { Bar } from 'react-chartjs-2';
-import axios from 'axios';
+// import { Bar } from 'react-chartjs-2';
+// import axios from 'axios';
 
 class ContributedChart extends Component {
 
@@ -17,9 +17,18 @@ class ContributedChart extends Component {
     }
 
     getChartData() {
-        // axios.get(`/api/contributed`)
-        //     .then(res => {
-        // const contribution = res.data;
+        // let race = this.state.race;
+        // let year = this.state.year;
+        // let amount = this.state.amount;
+
+        // axios.post(`/api/contributedinfo`), {
+        //     params: {
+        //         race: this.state.selectedRace,
+        //         year: this.state.selectedYear,
+        //         amount: this.state.selectedAmount,
+        //     }
+        // }
+
         let years = ["2012", "2013", "2014", "2015", "2016", "2017",];
         let amount = [50, 30, 70, 10, 10];
 

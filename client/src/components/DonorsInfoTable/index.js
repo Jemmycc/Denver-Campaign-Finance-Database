@@ -18,7 +18,6 @@ export default function CoinTable(props) {
                 {
                     props.campaignNames.map(row => (
                         <tr key={row.objectID}>
-                            {/* <td>{row.rank}</td> */}
                             <td>{row.contributorFirstName}</td>
                             <td>{row.contributorLastName}</td>
                             <td>{row.amount}</td>

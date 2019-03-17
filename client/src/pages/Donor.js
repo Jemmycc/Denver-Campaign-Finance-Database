@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import Nav from '../components/Nav';
-import CoinTable from '../components/CoinTable';
+import DonorsInfoTable from '../components/DonorsInfoTable';
 import axios from "axios";
 
 // import Jumbotron from '../components/Jumbotron';
@@ -61,7 +61,7 @@ class Donor extends Component {
                             </h2>
                         </Col>
 
-                        <CoinTable
+                        <DonorsInfoTable
                             campaignNames={this.state.campaignNames}
                         // sortBy={this.sortBy()}
                         />
