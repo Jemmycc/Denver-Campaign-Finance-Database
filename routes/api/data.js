@@ -55,13 +55,26 @@ router.get('/contributed', function (req, res) {
 router.post('/contributedinfo', function (req, res) {
 	console.log(req.body);
 
-	db.Data.find({ race: req.body.params.race })
-		.then(response => {
-			res.json({ response });
-		}).catch(err => {
-			console.log(err);
-		})
+	db.Data.aggregate([
+		{ $match: { race: req.body.params.race } },
+		{ $group: { _id: "$date", total: { $sum: "$amount" } } }
+	]).then(response => {
+		res.json({ response });
+		console.log(response);
+	}).catch(err => {
+		console.log(err);
+	});
+
+	// db.Data.find({ race: req.body.params.race })
+	// 	.then(response => {
+	// 		res.json({ response });
+	// 	}).catch(err => {
+	// 		console.log(err);
+	// 	})
 })
+
+
+
 
 router.get('/yearlycontributed', function (req, res) {
 	// let campaignName = req.query.campaignName;
