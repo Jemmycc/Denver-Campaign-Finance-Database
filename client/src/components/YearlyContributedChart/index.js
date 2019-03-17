@@ -3,8 +3,7 @@ import Chart from '../Chart/Chart';
 import "./ContributedChart.css";
 import { Row, Col } from "../Grid";
 import "./YearlyContributedChart.css";
-
-import { Bar } from 'react-chartjs-2';
+// import { Bar } from 'react-chartjs-2';
 import axios from 'axios';
 
 class ContributedChart extends Component {
@@ -35,7 +34,7 @@ class ContributedChart extends Component {
         console.log(amount);
         this.setState({
             chartData: {
-                labels: years,
+                labels: campaignNames,
                 datasets: [
                     {
                         label: 'dollars',

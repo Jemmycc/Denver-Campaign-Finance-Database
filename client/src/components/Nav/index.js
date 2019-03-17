@@ -56,13 +56,13 @@ class Nav extends Component {
               <Link
                 onClick={this.toggleNav}
                 className={window.location.pathname === "/contributed" ? "nav-link active" : "nav-link"}
-                to="/contributed">CONTRIBUTED COMPARISON</Link>
+                to="/contributed">CONTRIBUTION COMPARISON</Link>
             </li>
             <li className="nav-item">
               <Link
                 onClick={this.toggleNav}
                 className={window.location.pathname === "/yearlycontributed" ? "nav-link active" : "nav-link"}
-                to="/yearlycontributed">YEARLY CONTRIBUTION COMPARISON</Link>
+                to="/yearlycontributed">YEARLY CAMPAIGN CONTRIBUTION COMPARISON</Link>
             </li>
           </ul>
         </div>

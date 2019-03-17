@@ -5,7 +5,7 @@ function CardTitle() {
     return (
         <div className="card mt-4">
             <div className="page-title">
-                <img class="center-block" src="./img/dcfdTitle.jpg"></img>
+                <img class="center-block" alt="nameTitle" src="./img/dcfdTitle.jpg"></img>
             </div>
         </div>
 

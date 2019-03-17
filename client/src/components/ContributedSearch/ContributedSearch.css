@@ -9,14 +9,14 @@ input {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 16px;
     padding-left: 5px;
-    width: 200px;
+    width: 15px;
 }
 
 .formContributed {
     margin-top: 15px;
     margin-bottom: 25px;
     position: relative;
-    height: 200px;
+    height: 100px;
 }
 
 .title {
@@ -24,7 +24,7 @@ input {
  letter-spacing: 0.6px;
  font-size: 25px;
  font-weight: 999;
- margin-top: 20px;
+ padding-top: 35Px;
 }
 
 .submitBtn{
@@ -40,4 +40,8 @@ input {
 .submitBtn:hover {
     color: rgb(41, 115, 200);
     background-color: #fff;
+}
+
+h5 {
+    padding-left: 25px;
 }

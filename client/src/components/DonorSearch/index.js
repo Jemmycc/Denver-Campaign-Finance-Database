@@ -22,20 +22,15 @@ class DonorSearch extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-
         console.log('call your function here with these args ' + this.state.selectedCampaign, this.state.selectedYear);
     }
 
     handleCampaignChange = event => {
-
         this.setState({ selectedCampaign: event.target.value });
-
     }
 
     handleYearChange = event => {
-
         this.setState({ selectedYear: event.target.value });
-
     }
 
     render() {

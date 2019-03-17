@@ -12,19 +12,20 @@ input {
     width: 200px;
 }
 
-form {
+.formyearlyContributed {
     margin-top: 15px;
     margin-bottom: 25px;
     position: relative;
-    min-height: 150px;
+    height: 110px;
 }
 
-.title {
- font-family: 'Hind', sans-serif;
- letter-spacing: 0.6px;
- font-size: 25px;
- font-weight: 999;
- margin-top: 20px;
+.titleYearly {
+    font-family: 'Hind', sans-serif;
+    letter-spacing: 0.6px;
+    font-size: 25px;
+    font-weight: 999;
+    margin-top: 10px;
+    padding-left: 25px;
 }
 
 .submitBtn{
@@ -40,4 +41,8 @@ form {
 .submitBtn:hover {
     color: rgb(41, 115, 200);
     background-color: #fff;
+}
+
+h5 {
+    padding-left: 25px;
 }

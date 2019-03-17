@@ -3,8 +3,6 @@ import { Row, Col } from "../Grid";
 import axios from 'axios';
 import "./ContributedSearch.css";
 
-// "Auditor", "Candidate", "Clerk & Recorder", "Council-At-Large", "District Councilmember", "Mayor"
-
 class ContributedSearch extends React.Component {
 
     state = {
@@ -18,44 +16,44 @@ class ContributedSearch extends React.Component {
 
     componentDidMount() {
         axios.get('/api').then((res) => {
-            this.setState({ campaignRaces: res.data.response[2], campaignYears: res.data.response[1], campaignAmounts: res.data.response[3] });
+            this.setState({ campaignRaces: res.data.response[2], });
         }).catch((err => console.log(err)));
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log(this.state.selectedRace, this.state.selectedYear, this.state.selectedAmount);
-        let res = this.state.selectedAmount.split("-");
-        let minAmount = res[0];
-        let maxAmount = res[1];
+        console.log(this.state.selectedRace);
+        // let res = this.state.selectedAmount.split("-");
+        // let minAmount = res[0];
+        // let maxAmount = res[1];
 
-        console.log(this.state.selectedRace, this.state.selectedYear, minAmount, maxAmount);
+        console.log(this.state.selectedRace);
 
         axios.post('/api/contributedinfo', {
             params: {
-                race: this.state.selectedRace,
-                year: this.state.selectedYear,
-                minAmt: minAmount,
-                maxAmt: maxAmount
+                race: this.state.selectedRace
+                // year: this.state.selectedYear,
+                // amount: this.state.selectedAmount
+                // minAmt: minAmount,
+                // maxAmt: maxAmount
             }
         }).then((res) => {
             console.log(res.data);
         }).catch((err => console.log(err)))
     }
 
-
     handleRaceChange = event => {
         this.setState({ selectedRace: event.target.value });
     }
 
-    handleYearChange = event => {
-        this.setState({ selectedYear: event.target.value });
-    }
+    // handleYearChange = event => {
+    //     this.setState({ selectedYear: event.target.value });
+    // }
 
-    handleAmountChange = event => {
-        this.setState({ selectedAmount: event.target.value });
-    }
+    // handleAmountChange = event => {
+    //     this.setState({ selectedAmount: event.target.value });
+    // }
 
 
 
@@ -65,6 +63,7 @@ class ContributedSearch extends React.Component {
                 <Row className="flex-wrap-reverse">
                     <Col size="md-10">
                         <h4 className="title">Contribution Comparison</h4>
+                        <h5> Find out the amount contributed in each specific race each year. </h5>
                         <form className="formContributed">
                             <div>
                                 <label htmlFor="race-choice">Race:</label>
@@ -82,7 +81,7 @@ class ContributedSearch extends React.Component {
                                     ))}
                                 </datalist>
                             </div>
-                            <div>
+                            {/* <div>
                                 <label htmlFor="year-choice">Year:</label>
                                 <input
                                     list="years"
@@ -101,8 +100,8 @@ class ContributedSearch extends React.Component {
                                     <option value="2017" key={5} />
                                     <option value="2018" key={6} />
                                 </datalist>
-                            </div>
-                            <div>
+                            </div> */}
+                            {/* <div>
                                 <label htmlFor="amount-choice">Amount:</label>
                                 <input
                                     list="amount"
@@ -120,7 +119,7 @@ class ContributedSearch extends React.Component {
                                     <option value="4000-4999" key={4} />
                                     <option value="5000-999999" key={5} />
                                 </datalist>
-                            </div>
+                            </div> */}
 
                         </form>
                     </Col>
@@ -130,9 +129,9 @@ class ContributedSearch extends React.Component {
                             className="btn submitBtn"
                             onClick={this.handleSubmit}>
                             Search
-                    </button>
+                        </button>
                     </Col>
-                </Row >
+                </Row>
             </>
         );
     }

@@ -36,13 +36,14 @@ router.get('/', function (req, res) {
 
 router.get('/contributed', function (req, res) {
 	let race = req.query.race;
-	let year = req.query.year;
-	let yearRegex = '^' + year;
-	let minAmt = parseFloat(req.query.minAmt);
-	let maxAmt = parseFloat(req.query.maxAmt);
-	console.log('this route: Contributed' + " " + req.query.race + " " + req.query.year + " " + req.query.minAmt + " " + req.query.maxAmt);
+	// let year = req.query.year;
+	// let yearRegex = '^' + year;
+	// let amount = req.query.amount;
+	// let minAmt = parseFloat(req.query.minAmt);
+	// let maxAmt = parseFloat(req.query.maxAmt);
+	console.log('this route: Contributed' + " " + req.query.race);
 
-	db.Data.find({ race: race, amount: { $lte: maxAmt, $gte: minAmt }, date: { $regex: yearRegex } })
+	db.Data.find({ race: race })
 		.then(response => {
 			res.json({ response });
 			console.log(response);
@@ -54,7 +55,7 @@ router.get('/contributed', function (req, res) {
 router.post('/contributedinfo', function (req, res) {
 	console.log(req.body);
 
-	db.Data.find({ date: { $regex: req.body.params.year }, amount: { $lte: req.body.params.maxAmt } })
+	db.Data.find({ race: req.body.params.race })
 		.then(response => {
 			res.json({ response });
 		}).catch(err => {
@@ -63,13 +64,15 @@ router.post('/contributedinfo', function (req, res) {
 })
 
 router.get('/yearlycontributed', function (req, res) {
+	// let campaignName = req.query.campaignName;
 	let year = req.query.year;
 	let yearRegex = '^' + year;
-	let minAmt = parseFloat(req.query.minAmt);
-	let maxAmt = parseFloat(req.query.maxAmt);
-	console.log('this route: yearly Contributed' + " " + req.query.year + " " + req.query.minAmt + " " + req.query.maxAmt);
+	// let amount = req.query.amount;
+	// let minAmt = parseFloat(req.query.minAmt);
+	// let maxAmt = parseFloat(req.query.maxAmt);
+	console.log('this route: yearly Contributed' + " " + req.query.year);
 
-	db.Data.find({ date: { $regex: yearRegex }, amount: { $lte: maxAmt, $gte: minAmt } })
+	db.Data.find({ date: { $regex: yearRegex } })
 		.then(response => {
 			res.json({ response });
 			console.log(response);
@@ -80,32 +83,10 @@ router.get('/yearlycontributed', function (req, res) {
 
 router.post('/yearlycontributedinfo', function (req, res) {
 
-	// db.Data.aggregate([
-	// 	{
-	// 		"$group": {
-	// 			total: {
-	// 				$sum: {
-	// 					"$lte": "req.body.params.maxAmt",
-	// 					"$gte": "req.body.params.minAmt"
-	// 				},
-	// 			}
-	// 		}
-	// 	},
-	// ]);
-
 	db.Data.find({
+		// campaignName: { $campaignName: req.body.campaignName },
 		date: { $regex: req.body.params.year },
-
-		amount: { $lte: req.body.params.maxAmt }
-
-		// amount: {
-		// 	total: {
-		// 		$sum: {
-		// 			"$lte": "req.body.params.maxAmt",
-		// 			"$gte": "req.body.params.minAmt"
-		// 		},
-		// 	}
-		// }
+		// amount: { $amount: req.body.amount }
 	})
 		.then(response => {
 			res.json({ response });
