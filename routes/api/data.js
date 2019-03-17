@@ -78,19 +78,26 @@ router.get('/yearlycontributed', function (req, res) {
 });
 
 router.post('/yearlycontributedinfo', function (req, res) {
-	let year = req.body.params.year;
+	// let year = req.body.params.year;
 
-	db.Data.find({
+		// db.Data.find({
 
 		// campaignName: { $campaignName: req.body.campaignName },
-		year: year,
+		// year: year,
 		// amount: { $amount: req.body.amount }
-	})
-		.then(response => {
-			res.json({ response });
-		}).catch(err => {
-			console.log(err);
-		})
+
+
+	db.Data.aggregate([
+		{ $match: { year: req.body.params.year } },
+		{ $group: { _id: "$campaignName", total: { $sum: "$amount" } } }
+	]).then (response => {
+		res.json({ response });
+		console.log(response);
+	}).catch(err => {
+		console.log(err);
+	});
+
 })
 
 module.exports = router;
+

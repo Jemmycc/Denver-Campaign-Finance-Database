@@ -13,7 +13,7 @@ class YearlyContributedSearch extends React.Component {
 
     componentDidMount() {
         axios.get('/api').then((res) => {
-            this.setState({ campaignYears: res.data.response[1], campaignRaces: res.data.race[2], campaignAmounts: res.data.response[3] });
+            this.setState({ campaignYears: res.data.response[1], campaignRaces: res.data.response[2], campaignAmounts: res.data.response[3] });
         }).catch((err => console.log(err)));
     }
 

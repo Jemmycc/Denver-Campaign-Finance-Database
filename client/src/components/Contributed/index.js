@@ -1,84 +1,114 @@
-import React, { Component } from 'react';
-import Chart from '../Chart/Chart';
-// import { Bar } from 'react-chartjs-2';
-// import axios from 'axios';
+import React from 'react';
+import { Row, Col } from "../Grid";
+import axios from 'axios';
+import "./Contributed.css";
+import ContributedChart from "../ContributedChart";
 
-class ContributedChart extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            chartData: {},
-        };
+class Contributed extends React.Component {
+
+    state = {
+        campaignRaces: [],
+        campaignYears: [],
+        campaignAmounts: [],
+        selectedRace: "",
+        selectedYear: "",
+        selectedAmount: "",
+        xVals: [],
+        yVals: []
     }
 
-    componentWillMount() {
-        this.getChartData();
+    componentDidMount() {
+        axios.get('/api').then((res) => {
+            this.setState({ campaignRaces: res.data.response[2] });
+        }).catch((err => console.log(err)));
     }
 
-    getChartData() {
-        // let race = this.state.race;
-        // let year = this.state.year;
-        // let amount = this.state.amount;
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(this.state.selectedRace);
+        // let res = this.state.selectedAmount.split("-");
+        // let minAmount = res[0];
+        // let maxAmount = res[1];
 
-        // axios.post(`/api/contributedinfo`), {
-        //     params: {
-        //         race: this.state.selectedRace,
-        //         year: this.state.selectedYear,
-        //         amount: this.state.selectedAmount,
-        //     }
-        // }
-
-        let years = ["2012", "2013", "2014", "2015", "2016", "2017",];
-        let amount = [50, 30, 70, 10, 10];
-
-        // contribution.forEach(element => {
-        //     race.push(element.race);
-        //     amount.push(element.amount);
-        // });
-        console.log(years);
-        console.log(amount);
-        this.setState({
-            chartData: {
-                labels: years,
-                datasets: [
-                    {
-                        label: 'dollars',
-                        data: amount,
-                        backgroundColor: [
-                            'rgb(255, 99, 132, 0.6)',
-                            'rgb(54, 162, 235, 0.6)',
-                            'rgb(255, 206, 86, 0.6)',
-                            'rgb(75, 192, 192, 0.6)',
-                            'rgb(153, 102, 255, 0.6)',
-                            'rgb(255, 159, 64, 0.6)',
-                            'rgb(255, 99, 132, 0.6)',
-                        ],
-                        borderWidth: 1,
-                        borderColor: '#777',
-                        hoverBorderWidth: 3,
-                        hoverBorderColor: 'black',
-                    }
-                ]
+        axios.post('/api/contributedinfo', {
+            params: {
+                race: this.state.selectedRace
+                // year: this.state.selectedYear,
+                // amount: this.state.selectedAmount
+                // minAmt: minAmount,
+                // maxAmt: maxAmount
             }
-        });
-        // })
+        }).then((res) => {
+            console.log(res.data);
+
+            let xVals = [];
+            let yVals = [];
+
+            Array.from(res.data.children).forEach(element => {
+                xVals.push(element._id);
+                yVals.push(element.total);
+            });
+
+            console.log(xVals);
+
+            this.setState({ xVals: xVals, yVals: yVals });
+        }).catch((err => console.log(err)))
     }
 
+    handleRaceChange = event => {
+        this.setState({ selectedRace: event.target.value });
+    }
 
     render() {
-        console.log(this.state.chartData);
         return (
-            <div className="contributedChart" >
-                <header className="chart-header">
-                    <h3>
-                        Contributed Comparison </h3>
-                </header>
-                <Chart chartData={this.state.chartData} legendPosition="bottom" />
-            </div>
+            <>
+                <Row className="flex-wrap-reverse">
+                    <Col size="md-10">
+                        <h4 className="title">Contribution Comparison</h4>
+                        <h5> Find out the amount contributed in each specific race each year. </h5>
+                        <form className="formContributed">
+                            <div>
+                                <label htmlFor="race-choice">Race:</label>
+                                <input
+                                    list="races"
+                                    id=""
+                                    name=""
+                                    className=""
+                                    placeholder="Select Race"
+                                    value={this.state.selectedRace}
+                                    onChange={this.handleRaceChange} />
+                                <datalist id="races">
+                                    {this.state.campaignRaces.map((race, index) => (
+                                        <option value={race} key={index} />
+                                    ))}
+                                </datalist>
+                            </div>
+                        </form>
+                    </Col>
+                    <Col size="md-2">
+                        <button
+                            type="submit"
+                            className="btn submitBtn"
+                            onClick={this.handleSubmit}>
+                            Search
+                        </button>
+                    </Col>
 
+                </Row>
+
+                <Row>
+                    <Col size="md-2"></Col>
+                    <Col size="md-8">
+                        <ContributedChart xVals={this.state.xVals} yVals={this.state.yVals} />
+                    </Col>
+                    <Col size="md-2">
+                    </Col>
+                </Row>
+            </>
         );
     }
 }
 
-export default ContributedChart;
+
+export default Contributed;

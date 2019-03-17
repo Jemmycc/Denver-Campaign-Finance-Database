@@ -9,9 +9,10 @@ import React, { Component } from 'react';
 //import Footer from "../components/Footer";
 // import API from "../utils/API";
 import { Col, Row, Container } from '../components/Grid';
+import YearlyContributed from '../components/YearlyContributed';
 // import { List } from "../components/List";
 
-class YearlyContributed extends Component {
+class YearlyContributePage extends Component {
     state = {};
 
     render() {
@@ -21,9 +22,12 @@ class YearlyContributed extends Component {
                 <Container>
                     <Row>
                         <Col size="md-12">
-                            <h2>
-                                <strong>Yearly Contributed</strong>
-                            </h2>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col size="md-12">
+                            <YearlyContributed />
                         </Col>
                     </Row>
                 </Container>
@@ -32,4 +36,4 @@ class YearlyContributed extends Component {
     }
 }
 
-export default YearlyContributed;
+export default YearlyContributePage;

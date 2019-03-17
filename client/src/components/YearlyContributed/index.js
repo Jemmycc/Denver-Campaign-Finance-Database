@@ -1,41 +1,37 @@
 import React from 'react';
 import { Row, Col } from "../Grid";
 import axios from 'axios';
-import "./ContributedSearch.css";
+import "./YearlyContributed.css";
 
-
-class ContributedSearch extends React.Component {
-
+class YearlyContributed extends React.Component {
     state = {
-        campaignRaces: [],
         campaignYears: [],
         campaignAmounts: [],
-        selectedRace: "",
         selectedYear: "",
         selectedAmount: "",
     }
 
     componentDidMount() {
         axios.get('/api').then((res) => {
-            this.setState({ campaignRaces: res.data.response[2] });
+            this.setState({ campaignYears: res.data.response[1], campaignRaces: res.data.response[2], campaignAmounts: res.data.response[3] });
         }).catch((err => console.log(err)));
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
 
-        console.log(this.state.selectedRace);
+        console.log(this.state.selectedYear);
         // let res = this.state.selectedAmount.split("-");
         // let minAmount = res[0];
         // let maxAmount = res[1];
 
-        console.log(this.state.selectedRace);
+        console.log(this.state.selectedYear);
 
-        axios.post('/api/contributedinfo', {
+        axios.post('/api/yearlycontributedinfo', {
             params: {
-                race: this.state.selectedRace
-                // year: this.state.selectedYear,
-                // amount: this.state.selectedAmount
+                // race: this.state.selectedRace,
+                year: this.state.selectedYear,
+                // amount: this.state.selectedAmount,
                 // minAmt: minAmount,
                 // maxAmt: maxAmount
             }
@@ -44,52 +40,30 @@ class ContributedSearch extends React.Component {
         }).catch((err => console.log(err)))
     }
 
-    handleRaceChange = event => {
-        this.setState({ selectedRace: event.target.value });
+    handleYearChange = event => {
+        this.setState({ selectedYear: event.target.value });
     }
-
-    // handleYearChange = event => {
-    //     this.setState({ selectedYear: event.target.value });
-    // }
 
     // handleAmountChange = event => {
     //     this.setState({ selectedAmount: event.target.value });
     // }
-
-
 
     render() {
         return (
             <>
                 <Row className="flex-wrap-reverse">
                     <Col size="md-10">
-                        <h4 className="title">Contribution Comparison</h4>
-                        <h5> Find out the amount contributed in each specific race each year. </h5>
-                        <form className="formContributed">
+                        <h4 className="titleYearly">Yearly Campaign Contribution Comparison</h4>
+                        <h5> Find out donors' contributions in each campaign each year. </h5>
+                        <form className="formyearlyContributed">
                             <div>
-                                <label htmlFor="race-choice">Race:</label>
-                                <input
-                                    list="races"
-                                    id=""
-                                    name=""
-                                    className=""
-                                    placeholder="Select Race"
-                                    value={this.state.selectedRace}
-                                    onChange={this.handleRaceChange} />
-                                <datalist id="races">
-                                    {this.state.campaignRaces.map((race, index) => (
-                                        <option value={race} key={index} />
-                                    ))}
-                                </datalist>
-                            </div>
-                            {/* <div>
                                 <label htmlFor="year-choice">Year:</label>
                                 <input
                                     list="years"
                                     id=""
                                     name=""
                                     className=""
-                                    placeholder="Select Year"
+                                    placeholder="Year"
                                     value={this.state.selectedYear}
                                     onChange={this.handleYearChange} />
                                 <datalist id="years">
@@ -101,7 +75,8 @@ class ContributedSearch extends React.Component {
                                     <option value="2017" key={5} />
                                     <option value="2018" key={6} />
                                 </datalist>
-                            </div> */}
+                            </div>
+
                             {/* <div>
                                 <label htmlFor="amount-choice">Amount:</label>
                                 <input
@@ -130,16 +105,12 @@ class ContributedSearch extends React.Component {
                             className="btn submitBtn"
                             onClick={this.handleSubmit}>
                             Search
-                        </button>
+                    </button>
                     </Col>
-
                 </Row>
-
-
             </>
         );
     }
 }
 
-
-export default ContributedSearch;
+export default YearlyContributed;

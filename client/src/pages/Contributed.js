@@ -8,11 +8,11 @@ import React, { Component } from 'react';
 // import Form from "../components/Form";
 //import Footer from "../components/Footer";
 // import API from "../utils/API";
-import ContributedChart from "../components/Contributed";
+import Contributed from "../components/Contributed";
 import { Col, Row, Container } from '../components/Grid';
 // import { List } from "../components/List";
 
-class Contributed extends Component {
+class ContributPage extends Component {
     state = {};
 
     render() {
@@ -27,12 +27,12 @@ class Contributed extends Component {
 
                     <Row>
                         <Col size="md-12">
+                            <Contributed />
                         </Col>
                     </Row>
 
                     <Row>
                         <Col size="md-12">
-                            <ContributedChart />
                         </Col>
                     </Row>
                 </Container>
@@ -41,4 +41,4 @@ class Contributed extends Component {
     }
 }
 
-export default Contributed;
+export default ContributPage;
