@@ -1,7 +1,5 @@
 const router = require('express').Router();
-// const donorsController = require('../../controllers/donorsController');
 const db = require("../../models");
-
 
 router.get('/', function (req, res) {
 	console.log('this route');
@@ -19,11 +17,6 @@ router.get('/', function (req, res) {
 
 router.get('/contributed', function (req, res) {
 	let race = req.query.race;
-	// let year = req.query.year;
-	// let yearRegex = '^' + year;
-	// let amount = req.query.amount;
-	// let minAmt = parseFloat(req.query.minAmt);
-	// let maxAmt = parseFloat(req.query.maxAmt);
 	console.log('this route: Contributed' + " " + req.query.race);
 
 	db.Data.find({ race: race })
@@ -40,63 +33,40 @@ router.post('/contributedinfo', function (req, res) {
 
 	db.Data.aggregate([
 		{ $match: { race: req.body.params.race } },
-		{ $group: { _id: "$year", total: { $sum: "$amount" } } }
+		{ $group: { _id: "$year", total: { $sum: "$amount" } } },
+		{ $sort: { _id: 1 } }
 	]).then(response => {
 		res.json({ response });
 		console.log(response);
 	}).catch(err => {
 		console.log(err);
 	});
-
-	// db.Data.find({ race: req.body.params.race })
-	// 	.then(response => {
-	// 		res.json({ response });
-	// 	}).catch(err => {
-	// 		console.log(err);
-	// 	})
 })
 
-
-
-
 router.get('/yearlycontributed', function (req, res) {
-	// let campaignName = req.query.campaignName;
 	let year = req.query.year;
-	// let yearRegex = '^' + year;
-	// let amount = req.query.amount;
-	// let minAmt = parseFloat(req.query.minAmt);
-	// let maxAmt = parseFloat(req.query.maxAmt);
 	console.log('this route: yearly Contributed' + " " + req.query.year);
 
 	db.Data.find({ year: year })
 		.then(response => {
 			res.json({ response });
-			console.log(response);
+			// console.log(response);
 		}).catch(err => {
 			console.log(err);
 		})
 });
 
 router.post('/yearlycontributedinfo', function (req, res) {
-	// let year = req.body.params.year;
-
-		// db.Data.find({
-
-		// campaignName: { $campaignName: req.body.campaignName },
-		// year: year,
-		// amount: { $amount: req.body.amount }
-
-
 	db.Data.aggregate([
 		{ $match: { year: req.body.params.year } },
-		{ $group: { _id: "$campaignName", total: { $sum: "$amount" } } }
-	]).then (response => {
+		{ $group: { _id: "$campaignName", total: { $sum: "$amount" } } },
+		{ $sort: { _id: 1 } }
+	]).then(response => {
 		res.json({ response });
-		console.log(response);
+		// console.log(response);
 	}).catch(err => {
 		console.log(err);
 	});
-
 })
 
 module.exports = router;

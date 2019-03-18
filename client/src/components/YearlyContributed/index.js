@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col } from "../Grid";
 import axios from 'axios';
 import "./YearlyContributed.css";
+import YearlyContributedChart from "../YearlyContributedChart/YearlyContributedChart";
+
 
 class YearlyContributed extends React.Component {
     state = {
@@ -9,44 +11,44 @@ class YearlyContributed extends React.Component {
         campaignAmounts: [],
         selectedYear: "",
         selectedAmount: "",
+        xVals: [],
+        yVals: [],
+        haveData: false
     }
 
     componentDidMount() {
         axios.get('/api').then((res) => {
-            this.setState({ campaignYears: res.data.response[1], campaignRaces: res.data.response[2], campaignAmounts: res.data.response[3] });
+            this.setState({ campaignYears: res.data.response[1] });
         }).catch((err => console.log(err)));
     }
 
     handleSubmit = (event) => {
-        event.preventDefault();
-
-        console.log(this.state.selectedYear);
-        // let res = this.state.selectedAmount.split("-");
-        // let minAmount = res[0];
-        // let maxAmount = res[1];
-
-        console.log(this.state.selectedYear);
-
         axios.post('/api/yearlycontributedinfo', {
             params: {
-                // race: this.state.selectedRace,
-                year: this.state.selectedYear,
-                // amount: this.state.selectedAmount,
-                // minAmt: minAmount,
-                // maxAmt: maxAmount
+                year: this.state.selectedYear
             }
         }).then((res) => {
             console.log(res.data);
+            let xVals = [];
+            let yVals = [];
+
+            for (let i = 0; i < res.data.response.length; i++) {
+                xVals.push(res.data.response[i]._id);
+                yVals.push(res.data.response[i].total);
+            }
+
+            this.setState({ xVals: xVals, yVals: yVals, haveData: true });
         }).catch((err => console.log(err)))
     }
+
 
     handleYearChange = event => {
         this.setState({ selectedYear: event.target.value });
     }
 
-    // handleAmountChange = event => {
-    //     this.setState({ selectedAmount: event.target.value });
-    // }
+    handleAmountChange = event => {
+        this.setState({ selectedAmount: event.target.value });
+    }
 
     render() {
         return (
@@ -67,36 +69,11 @@ class YearlyContributed extends React.Component {
                                     value={this.state.selectedYear}
                                     onChange={this.handleYearChange} />
                                 <datalist id="years">
-                                    <option value="2012" key={0} />
-                                    <option value="2013" key={1} />
-                                    <option value="2014" key={2} />
-                                    <option value="2015" key={3} />
-                                    <option value="2016" key={4} />
-                                    <option value="2017" key={5} />
-                                    <option value="2018" key={6} />
+                                    {this.state.campaignYears.map((year, index) => (
+                                        <option value={year} key={index} />
+                                    ))}
                                 </datalist>
                             </div>
-
-                            {/* <div>
-                                <label htmlFor="amount-choice">Amount:</label>
-                                <input
-                                    list="amount"
-                                    id=""
-                                    name=""
-                                    className=""
-                                    placeholder="Select Amount"
-                                    value={this.state.selectedAmount}
-                                    onChange={this.handleAmountChange} />
-                                <datalist id="amount">
-                                    <option value="500-999" key={0} />
-                                    <option value="1000-1999" key={1} />
-                                    <option value="2000-2999" key={2} />
-                                    <option value="3000-3999" key={3} />
-                                    <option value="4000-4999" key={4} />
-                                    <option value="5000-999999" key={5} />
-                                </datalist>
-                            </div> */}
-
                         </form>
                     </Col>
                     <Col size="md-2">
@@ -106,6 +83,17 @@ class YearlyContributed extends React.Component {
                             onClick={this.handleSubmit}>
                             Search
                     </button>
+                    </Col>
+                </Row>
+
+                <Row>
+                    <Col size="md-1">
+                    </Col>
+                    <Col size="md-10">
+                        {this.state.haveData ? <YearlyContributedChart xVals={this.state.xVals} yVals={this.state.yVals} /> : < div />}
+                        {/* // <h4>YEAR: {this.state.selectedRace}</h4> */}
+                    </Col>
+                    <Col size="md-1">
                     </Col>
                 </Row>
             </>

@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
 import Donor from "./pages/Donor";
-import Contributed from "./pages/Contributed";
-import YearlyContributed from "./pages/YearlyContributed";
+import Contributed from "./components/Contributed";
+import YearlyContributed from "./components/YearlyContributed";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import CardTitle from './components/CardTitle';
@@ -22,7 +22,6 @@ const todoBackground = {
 function App() {
   return (
     <Router>
-      {/* <div style={{ backgroundColor: "rgb(230, 230, 230)" }}> */}
       <div style={todoBackground}>
         <CardTitle />
         <Nav />

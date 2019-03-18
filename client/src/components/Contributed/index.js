@@ -2,11 +2,10 @@ import React from 'react';
 import { Row, Col } from "../Grid";
 import axios from 'axios';
 import "./Contributed.css";
-import ContributedChart from "../ContributedChart";
+import ContributedChart from "../ContributedChart/ContributedChart";
 
 
 class Contributed extends React.Component {
-
     state = {
         campaignRaces: [],
         campaignYears: [],
@@ -15,10 +14,11 @@ class Contributed extends React.Component {
         selectedYear: "",
         selectedAmount: "",
         xVals: [],
-        yVals: []
+        yVals: [],
+        haveData: false
     }
 
-    componentDidMount() {
+    componentWillMount() {
         axios.get('/api').then((res) => {
             this.setState({ campaignRaces: res.data.response[2] });
         }).catch((err => console.log(err)));
@@ -26,33 +26,22 @@ class Contributed extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.selectedRace);
-        // let res = this.state.selectedAmount.split("-");
-        // let minAmount = res[0];
-        // let maxAmount = res[1];
 
         axios.post('/api/contributedinfo', {
             params: {
                 race: this.state.selectedRace
-                // year: this.state.selectedYear,
-                // amount: this.state.selectedAmount
-                // minAmt: minAmount,
-                // maxAmt: maxAmount
             }
         }).then((res) => {
             console.log(res.data);
-
             let xVals = [];
             let yVals = [];
 
-            Array.from(res.data.children).forEach(element => {
-                xVals.push(element._id);
-                yVals.push(element.total);
-            });
+            for (let i = 0; i < res.data.response.length; i++) {
+                xVals.push(res.data.response[i]._id);
+                yVals.push(res.data.response[i].total);
+            }
 
-            console.log(xVals);
-
-            this.setState({ xVals: xVals, yVals: yVals });
+            this.setState({ xVals: xVals, yVals: yVals, haveData: true });
         }).catch((err => console.log(err)))
     }
 
@@ -98,17 +87,18 @@ class Contributed extends React.Component {
                 </Row>
 
                 <Row>
-                    <Col size="md-2"></Col>
-                    <Col size="md-8">
-                        <ContributedChart xVals={this.state.xVals} yVals={this.state.yVals} />
+                    <Col size="md-1">
                     </Col>
-                    <Col size="md-2">
+                    <Col size="md-10">
+                        {this.state.haveData ? <ContributedChart xVals={this.state.xVals} yVals={this.state.yVals} /> : < div />}
+                        {/* // <h4>RACE: {this.state.selectedRace}</h4> */}
+                    </Col>
+                    <Col size="md-1">
                     </Col>
                 </Row>
             </>
         );
     }
 }
-
 
 export default Contributed;

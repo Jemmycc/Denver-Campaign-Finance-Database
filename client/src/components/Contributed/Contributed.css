@@ -19,7 +19,7 @@ input {
     height: 100px;
 }
 
-.title {
+h4 {
  font-family: 'Hind', sans-serif;
  letter-spacing: 0.6px;
  font-size: 25px;

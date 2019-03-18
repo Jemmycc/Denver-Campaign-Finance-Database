@@ -1,37 +1,27 @@
 import React, { Component } from 'react';
-import Chart from '../Chart/Chart';
-// import { Bar } from 'react-chartjs-2';
-// import axios from 'axios';
+import LineChart from '../LineChart/LineChart';
 
 
-class ContributedChart extends Component {
-
+class YearlyContributedChart extends Component {
     constructor(props) {
-        console.log("in contributed chart");
-
         super(props);
-        this.state = {
-            chartData: {},
-            xVals: props.xVals,
-            yVals: props.yVals
-        };
+        this.state = { chartData: {} };
     }
 
-    componentDidMount() {
-        console.log("in component did mount");
+    componentDidMount(prevProps) {
+        // if (this.props.xVals !== prevProps.xVals || this.props.yVals !== prevProps.yVals) {
         this.getChartData();
+        // }
     }
 
     getChartData() {
-        console.log("xval" + this.state.xVals);
-        console.log(this.state.yVals);
         this.setState({
             chartData: {
-                labels: this.state.xVals,
+                labels: this.props.xVals,
                 datasets: [
                     {
                         label: 'dollars',
-                        data: this.state.yVals,
+                        data: this.props.yVals,
                         backgroundColor: [
                             'rgb(255, 99, 132, 0.6)',
                             'rgb(54, 162, 235, 0.6)',
@@ -49,26 +39,21 @@ class ContributedChart extends Component {
                 ]
             }
         });
-        // })
     }
 
 
     render() {
-        console.log("chartdata" + this.state.chartData);
         return (
             <>
-                <div className="contributedChart" >
+                <div className="yearlyContributedChart" >
                     <header className="chart-header">
-                        <h3>
-                            Contributed Comparison </h3>
+                        <h3>Yearly Contributed Comparison </h3>
                     </header>
-                    <Chart chartData={this.state.chartData} legendPosition="bottom" />
+                    <LineChart chartData={this.state.chartData} legendPosition="bottom" />
                 </div>
             </>
-
         );
     }
-
 }
 
-export default ContributedChart;
+export default YearlyContributedChart;

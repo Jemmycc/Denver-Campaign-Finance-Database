@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Bar } from 'react-chartjs-2';
-import "./Chart.css";
+import { Line } from 'react-chartjs-2';
+import "./LineChart.css";
 
 
 
-class Chart extends Component {
+class LineChart extends Component {
 
     constructor(props) {
         super(props);
@@ -23,10 +23,10 @@ class Chart extends Component {
     render() {
         return (
             <div className="chart">
-                <Bar
+                <Line
                     data={this.props.chartData}
-                    width={150}
-                    height={130}
+                    width={250}
+                    height={150}
                     options={{
                         title: {
                             display: this.props.displayTitle,
@@ -59,4 +59,4 @@ class Chart extends Component {
 }
 
 
-export default Chart;
+export default LineChart;
