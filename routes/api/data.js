@@ -15,6 +15,21 @@ router.get('/', function (req, res) {
 	})
 });
 
+router.get('/donors', function (req, res) {
+	console.log(req.body);
+
+	db.Data.find({ year: year })
+		.then(response => {
+			res.json({ response });
+			console.log(response);
+		}).catch(err => {
+			console.log(err);
+		})
+})
+
+
+
+
 router.get('/contributed', function (req, res) {
 	let race = req.query.race;
 	console.log('this route: Contributed' + " " + req.query.race);
@@ -50,7 +65,6 @@ router.get('/yearlycontributed', function (req, res) {
 	db.Data.find({ year: year })
 		.then(response => {
 			res.json({ response });
-			// console.log(response);
 		}).catch(err => {
 			console.log(err);
 		})
@@ -63,7 +77,6 @@ router.post('/yearlycontributedinfo', function (req, res) {
 		{ $sort: { _id: 1 } }
 	]).then(response => {
 		res.json({ response });
-		// console.log(response);
 	}).catch(err => {
 		console.log(err);
 	});

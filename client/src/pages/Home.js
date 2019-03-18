@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
-// import Nav from "../components/Nav";
 import Jumbotron from '../components/Jumbotron';
-import DonorSearch from '../components/DonorSearch';
-import ContributedSearch from '../components/ContributedSearch';
-import YearlyContributedSearch from '../components/YearlyContributedSearch';
-// import Card from '../components/Card';
-// import Form from "../components/Form";
-//import Footer from "../components/Footer";
-// import API from "../utils/API";
+import Donors from '../components/Donors';
+import Contributed from '../components/Contributed';
+import YearlyContributed from '../components/YearlyContributed';
 import { Col, Row, Container } from '../components/Grid';
-// import { List } from "../components/List";
 
 class Home extends Component {
   state = {};
@@ -30,25 +24,41 @@ class Home extends Component {
               </Jumbotron>
             </Col>
           </Row>
+
           <Row>
             <Col size="md-3"> </Col>
             <Col size="md-6">
-              <DonorSearch />
-            </Col>
-            <Col size="md-3"> </Col>
-            <Col size="md-3"> </Col>
-            <Col size="md-6">
-              <ContributedSearch />
-            </Col>
-            <Col size="md-3"> </Col>
-            <Col size="md-3"> </Col>
-            <Col size="md-6">
-              <YearlyContributedSearch />
+              <Donors />
             </Col>
             <Col size="md-3"> </Col>
           </Row>
-        </Container>
-      </div>
+
+          <Row>
+            <Col size="md-12"> </Col>
+          </Row>
+
+          <Row>
+            <Col size="md-3"> </Col>
+            <Col size="md-6">
+              <Contributed />
+            </Col>
+            <Col size="md-3"> </Col>
+          </Row>
+
+          <Row>
+            <Col size="md-12"> </Col>
+          </Row>
+
+          <Row>
+            <Col size="md-3"> </Col>
+            <Col size="md-6">
+              <YearlyContributed />
+            </Col>
+            <Col size="md-3"> </Col>
+          </Row>
+
+        </Container >
+      </div >
     );
   }
 }

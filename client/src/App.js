@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import Donor from "./pages/Donor";
+import Donors from "./components/Donors";
 import Contributed from "./components/Contributed";
 import YearlyContributed from "./components/YearlyContributed";
 import NoMatch from "./pages/NoMatch";
@@ -27,7 +27,7 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/donor" component={Donor} />
+          <Route exact path="/donors" component={Donors} />
           <Route exact path="/contributed" component={Contributed} />
           <Route exact path="/yearlycontributed" component={YearlyContributed} />
           <Route component={NoMatch} />

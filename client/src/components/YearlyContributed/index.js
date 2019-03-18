@@ -17,12 +17,18 @@ class YearlyContributed extends React.Component {
     }
 
     componentDidMount() {
+        var selectedYear = (window.location.pathname === "/") ? "" : sessionStorage.getItem("selectedYear");
         axios.get('/api').then((res) => {
-            this.setState({ campaignYears: res.data.response[1] });
+            this.setState({
+                campaignYears: res.data.response[1],
+                selectedYear: selectedYear
+            });
+            if (this.state.selectedYear.length) {
+                this.getYearlyContributedData();
+            }
         }).catch((err => console.log(err)));
     }
-
-    handleSubmit = (event) => {
+    getYearlyContributedData = () => {
         axios.post('/api/yearlycontributedinfo', {
             params: {
                 year: this.state.selectedYear
@@ -41,21 +47,32 @@ class YearlyContributed extends React.Component {
         }).catch((err => console.log(err)))
     }
 
+    handleSubmit = (event) => {
+        var home = (window.location.pathname === "/") ? true : false;
+        if (home) {
+            //set session storage and naviagte to "/yearlycontributed"
+            sessionStorage.setItem("selectedYear", this.state.selectedYear)
+            window.location = "yearlyContributed"
+        }
+        else {
+            //get data from db
+            this.getYearlyContributedData();
+        }
+    }
 
     handleYearChange = event => {
-        this.setState({ selectedYear: event.target.value });
+        this.setState({ selectedYear: event.target.value, campaignYears: this.state.campaignYears });
     }
 
-    handleAmountChange = event => {
-        this.setState({ selectedAmount: event.target.value });
-    }
 
     render() {
+        console.log("Campaign Years");
+        console.log(this.state.campaignYears);
         return (
             <>
                 <Row className="flex-wrap-reverse">
                     <Col size="md-10">
-                        <h4 className="titleYearly">Yearly Campaign Contribution Comparison</h4>
+                        <h4 className="title">Yearly Campaign Contribution Comparison</h4>
                         <h5> Find out donors' contributions in each campaign each year. </h5>
                         <form className="formyearlyContributed">
                             <div>

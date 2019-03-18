@@ -67,13 +67,9 @@ class YearlyContributedSearch extends React.Component {
                                     value={this.state.selectedYear}
                                     onChange={this.handleYearChange} />
                                 <datalist id="years">
-                                    <option value="2012" key={0} />
-                                    <option value="2013" key={1} />
-                                    <option value="2014" key={2} />
-                                    <option value="2015" key={3} />
-                                    <option value="2016" key={4} />
-                                    <option value="2017" key={5} />
-                                    <option value="2018" key={6} />
+                                    {this.state.campaignYears.map((year, index) => (
+                                        <option value={year} key={index} />
+                                    ))}
                                 </datalist>
                             </div>
 

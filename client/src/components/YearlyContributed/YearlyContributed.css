@@ -12,11 +12,11 @@ input {
     width: 150px;
 }
 
-.formContributed {
+.formyearlyContributed {
     margin-top: 15px;
     margin-bottom: 25px;
     position: relative;
-    height: 100px;
+    height: 110px;
 }
 
 h4 {

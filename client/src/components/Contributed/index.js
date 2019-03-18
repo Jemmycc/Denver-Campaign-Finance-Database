@@ -19,14 +19,19 @@ class Contributed extends React.Component {
     }
 
     componentWillMount() {
+        var selectedRace = (window.location.pathname === "/") ? "" : sessionStorage.getItem("selectedRace");
         axios.get('/api').then((res) => {
-            this.setState({ campaignRaces: res.data.response[2] });
+            this.setState({
+                campaignRaces: res.data.response[2],
+                selectedRace: selectedRace
+            });
+            if (this.state.selectedRace.length) {
+                this.getContributedData();
+            }
         }).catch((err => console.log(err)));
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-
+    getContributedData = () => {
         axios.post('/api/contributedinfo', {
             params: {
                 race: this.state.selectedRace
@@ -43,6 +48,17 @@ class Contributed extends React.Component {
 
             this.setState({ xVals: xVals, yVals: yVals, haveData: true });
         }).catch((err => console.log(err)))
+    }
+
+    handleSubmit = (event) => {
+        var home = (window.location.pathname === "/") ? true : false;
+        if (home) {
+            sessionStorage.setItem("selectedRace", this.state.selectedRace)
+            window.location = "contributed"
+        }
+        else {
+            this.getContributedData();
+        }
     }
 
     handleRaceChange = event => {
